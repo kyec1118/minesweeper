@@ -6,3 +6,12 @@ export interface Cell {
   isFlagged: boolean;
   adjacentMines: number;
 }
+
+export const DEFAULT_CELL = {
+  x: 0,
+  y: 0,
+  isMine: false,
+  isRevealed: false,
+  isFlagged: false,
+  adjacentMines: 0,
+};

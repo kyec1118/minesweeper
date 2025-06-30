@@ -86,6 +86,7 @@ export class GameService {
     cell.status = CellStatusType.REVEALED;
     if (cell.isMine) {
       this.gameStatus = GameStatusType.LOST;
+      this.revealMines();
       console.log('Game Over! You hit a mine.');
       return;
     } else if (cell.adjacentMines === 0) {
@@ -151,5 +152,15 @@ export class GameService {
         }
       }
     }
+  }
+
+  private revealMines(): void {
+    this.cells()
+      .flat()
+      .forEach((cell) => {
+        if (cell.isMine) {
+          cell.status = CellStatusType.REVEALED;
+        }
+      });
   }
 }

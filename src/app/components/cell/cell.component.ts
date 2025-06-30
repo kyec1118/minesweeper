@@ -12,8 +12,21 @@ export class CellComponent {
   readonly cellClicked = output<Cell>();
   readonly CellStatusType = CellStatusType;
 
+  isPressed = false;
+
+  onMouseDown() {
+    this.isPressed = true;
+  }
+
+  onMouseUp() {
+    this.isPressed = false;
+  }
+
+  onMouseLeave() {
+    this.isPressed = false;
+  }
+
   onCellClick() {
     this.cellClicked.emit(this.cell());
-    console.log(`Cell clicked: (${this.cell().x}, ${this.cell().y})`);
   }
 }

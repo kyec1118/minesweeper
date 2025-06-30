@@ -1,20 +1,30 @@
 .cell {
   font-family: "mine-sweeper";
+  box-sizing: border-box;
   width: 1.5rem;
   height: 1.5rem;
   display: grid;
   place-items: center;
   user-select: none;
   cursor: pointer;
-  border: 1.5px solid;
+  border: 3px solid;
   border-top-color: #ffffff;
   border-right-color: #7b7b7b;
   border-bottom-color: #7b7b7b;
   border-left-color: #ffffff;
   background-color: #bdbdbd; // default hidden color
 
+  &.pressed {
+    background-color: #ccc; /* darker or different color */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+    transition: none; /* immediate press effect */
+  }
+
   &.revealed {
     background-color: #e0e0e0;
+    border: 1px solid;
+    border-color: #ccc;
     cursor: default;
   }
 

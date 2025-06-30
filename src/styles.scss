@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  text-align: center;
+}
+body {
+  margin: 0;
+  font-family: "mine-sweeper";
+}
+
+@font-face {
+  font-family: "mine-sweeper";
+  src: url("./assets/fonts/mine-sweeper.otf.woff2") format("woff2");
+}

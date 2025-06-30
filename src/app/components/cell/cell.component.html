@@ -1,1 +1,19 @@
-<p>cell works!</p>
+<div class="cell" [class.hidden]="cell().status === CellStatusType.HIDDEN"
+    [class.revealed]="cell().status === CellStatusType.REVEALED"
+    [class.flagged]="cell().status === CellStatusType.FLAGGED"
+    [class.mine]="cell().isMine && cell().status === CellStatusType.REVEALED"
+    [class.empty]="cell().adjacentMines === 0 && !cell().isMine && cell().status === CellStatusType.REVEALED"
+    [class.adj-1]="cell().adjacentMines === 1" [class.adj-2]="cell().adjacentMines === 2"
+    [class.adj-3]="cell().adjacentMines === 3" [class.adj-4]="cell().adjacentMines === 4" (click)="onCellClick()">
+    @if (cell().status === CellStatusType.FLAGGED){
+    🚩
+    } @else if (cell().status === CellStatusType.HIDDEN){
+    &nbsp;}
+    @else if (cell().isMine){
+    💣
+    } @else if (cell().adjacentMines > 0) {
+    {{cell().adjacentMines}}
+    } @else {
+    &nbsp;
+    }
+</div>

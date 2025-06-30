@@ -1,0 +1,44 @@
+.cell {
+  font-family: "mine-sweeper";
+  width: 1.5rem;
+  height: 1.5rem;
+  display: grid;
+  place-items: center;
+  user-select: none;
+  cursor: pointer;
+  border: 1.5px solid;
+  border-top-color: #ffffff;
+  border-right-color: #7b7b7b;
+  border-bottom-color: #7b7b7b;
+  border-left-color: #ffffff;
+  background-color: #bdbdbd; // default hidden color
+
+  &.revealed {
+    background-color: #e0e0e0;
+    cursor: default;
+  }
+
+  &.mine {
+    color: black;
+    background-color: #ffaaaa;
+  }
+
+  &.empty {
+    background-color: #e0e0e0;
+    color: transparent;
+  }
+
+  // Colors for different numbers
+  &.adj-1 {
+    color: blue;
+  }
+  &.adj-2 {
+    color: green;
+  }
+  &.adj-3 {
+    color: red;
+  }
+  &.adj-4 {
+    color: darkblue;
+  }
+}

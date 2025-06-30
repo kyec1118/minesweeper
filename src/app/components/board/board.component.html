@@ -1,1 +1,9 @@
-<p>board works!</p>
+<div class="board">
+    @for(row of cells(); track row ){
+    <div class="row">
+        @for(cell of row; track cell) {
+        <app-cell [cell]="cell" (cellClicked)="onCellClick($event)"></app-cell>
+        }
+    </div>
+    }
+</div>

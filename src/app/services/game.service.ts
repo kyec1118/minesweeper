@@ -1,7 +1,8 @@
-import { Injectable, signal, Signal } from '@angular/core';
+import { Injectable, signal, Signal, effect } from '@angular/core';
 import { Cell, CellStatusType } from '../models/cell.model';
+import { Time } from '@angular/common';
 
-enum GameStatusType {
+export enum GameStatusType {
   NOT_STARTED,
   IN_PROGRESS,
   WON,
@@ -12,17 +13,27 @@ enum GameStatusType {
   providedIn: 'root',
 })
 export class GameService {
-  gameStatus: GameStatusType = GameStatusType.NOT_STARTED;
+  gameStatus = signal<GameStatusType>(GameStatusType.NOT_STARTED);
   rows = 20;
   columns = 20;
   mines = 75;
+  private _timer: ReturnType<typeof setInterval> | null = null;
+  private _gameTime = signal(0);
+  private hasStarted = false;
   private _cells = signal<Cell[][]>([]);
+
   constructor() {}
 
   get cells() {
     return this._cells;
   }
+
+  get gameTime(): Signal<number> {
+    return this._gameTime;
+  }
+
   startGame() {
+    this._gameTime.set(0);
     const newBoard: Cell[][] = [];
     // Initialize the game board with default cells
     for (let x = 0; x < this.rows; x++) {
@@ -57,7 +68,11 @@ export class GameService {
       }
     }
 
-    this.gameStatus = GameStatusType.IN_PROGRESS;
+    this.gameStatus.set(GameStatusType.IN_PROGRESS);
+    // Set the started flag to false when game inits
+    if (this.hasStarted) {
+      this.hasStarted = !this.hasStarted;
+    }
 
     console.log('Game started with the following board:');
     console.table(
@@ -78,19 +93,48 @@ export class GameService {
   }
 
   revealCell(cell: Cell): void {
-    if (this.gameStatus !== GameStatusType.IN_PROGRESS) {
+    console.log('hasSTarted flag: ', this.hasStarted);
+    if (!this.hasStarted) {
+      this.hasStarted = true;
+      this.startTimer();
+      console.log('toggled start game to true');
+    }
+    if (this.gameStatus() !== GameStatusType.IN_PROGRESS) {
       throw new Error('Game is not in progress');
     }
     if (cell.status === CellStatusType.REVEALED) return;
 
     cell.status = CellStatusType.REVEALED;
     if (cell.isMine) {
-      this.gameStatus = GameStatusType.LOST;
+      this.stopTimer();
+      this.gameStatus.set(GameStatusType.LOST);
       this.revealMines();
       console.log('Game Over! You hit a mine.');
       return;
     } else if (cell.adjacentMines === 0) {
       this.expandCell(cell.x, cell.y);
+    }
+  }
+
+  flagCell(cell: Cell): void {
+    if (this.gameStatus() !== GameStatusType.IN_PROGRESS) {
+      throw new Error('Game is not in progress');
+    }
+
+    switch (cell.status) {
+      case CellStatusType.REVEALED:
+        return;
+      case CellStatusType.HIDDEN:
+        cell.status = CellStatusType.FLAGGED;
+        break;
+      case CellStatusType.FLAGGED:
+        cell.status = CellStatusType.HIDDEN;
+        break;
+    }
+
+    if (this.gameIsWon()) {
+      this.stopTimer();
+      this.gameStatus.set(GameStatusType.WON);
     }
   }
   protected getCell(x: number, y: number): Cell {
@@ -162,5 +206,28 @@ export class GameService {
           cell.status = CellStatusType.REVEALED;
         }
       });
+  }
+
+  private gameIsWon(): boolean {
+    return this.cells()
+      .flat()
+      .every(
+        (cell) =>
+          (cell.isMine && cell.status === CellStatusType.FLAGGED) ||
+          (!cell.isMine && cell.status === CellStatusType.REVEALED)
+      );
+  }
+
+  startTimer(): void {
+    this._timer = setInterval(() => {
+      this._gameTime.update((s) => s + 1);
+    }, 1000);
+  }
+
+  stopTimer(): void {
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = null;
+    }
   }
 }

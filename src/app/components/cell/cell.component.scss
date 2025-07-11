@@ -1,4 +1,8 @@
+@import "../../shared/_base.scss";
+
 .cell {
+  @include float;
+
   font-family: "mine-sweeper";
   box-sizing: border-box;
   width: 1.5rem;
@@ -16,7 +20,6 @@
 
   &.pressed {
     background-color: #ccc; /* darker or different color */
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
     transform: translateY(2px);
     transition: none; /* immediate press effect */
   }

@@ -10,8 +10,4 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class HeaderComponent {
   gameService = inject(GameService);
-  restartGame() {
-    console.log('start');
-    this.gameService.startGame();
-  }
 }

@@ -1,0 +1,44 @@
+.board_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: auto;
+  background-color: #bdbdbd;
+  border: 3px solid;
+  border-bottom-color: #ffffff;
+  border-left-color: #7b7b7b;
+  border-top-color: #7b7b7b;
+  border-right-color: #ffffff;
+  margin-bottom: 15px;
+
+  .emoji-btn {
+    font-size: 2rem;
+    border: 3px solid;
+    border-top-color: #ffffff;
+    border-right-color: #7b7b7b;
+    border-bottom-color: #7b7b7b;
+    border-left-color: #ffffff;
+    background-color: #bdbdbd; // default hidden color
+  }
+
+  .board_timer {
+    font-family: "digital";
+    font-size: 2.2rem;
+    color: #ff2c2c; /* bright red digits */
+    background-color: #000; /* black background */
+    padding: 0.4rem;
+    border-radius: 2px;
+    text-align: center;
+    letter-spacing: 0.15rem;
+    text-shadow: 0 0 5px #ff2c2c, 0 0 10px #ff2c2c; /* glowing red effect */
+    width: fit-content;
+    box-shadow: inset 0 0 10px #222;
+    display: inline-block;
+    display: flex;
+    justify-content: center; /* horizontal centering */
+    align-items: center; /* vertical centering */
+    height: 2.5rem; /* fixed height to help vertical centering */
+    width: 6rem;
+  }
+}

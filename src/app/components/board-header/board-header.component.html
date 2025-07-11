@@ -1,0 +1,16 @@
+<div class="board_header">
+    <button class="emoji-btn" (click)="restartGame()">
+        @if (gameStatus() === GameStatusType.IN_PROGRESS ){
+        🧐
+        } @else if (gameStatus() === GameStatusType.LOST){
+        😵
+        } @else if (gameStatus()===GameStatusType.WON) {
+        🥳
+        }
+    </button>
+    <div class="board_timer">
+        {{formatTime(gameTime())}}
+    </div>
+    <div> Game Difficulty</div>
+
+</div>

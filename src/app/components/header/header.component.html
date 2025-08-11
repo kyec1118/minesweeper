@@ -1,1 +1,13 @@
-<h1>Minesweeper</h1>
+<div class="header-container">
+  <div class="header-content">
+    <h1 routerLink="/" class="logo">Minesweeper</h1>
+    <nav class="navigation">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+        🏠 Home
+      </a>
+      <a routerLink="/game" routerLinkActive="active" class="nav-link">
+        🎮 Play Game
+      </a>
+    </nav>
+  </div>
+</div>

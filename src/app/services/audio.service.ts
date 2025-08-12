@@ -7,9 +7,34 @@ export class AudioService {
   private backgroundMusic: HTMLAudioElement | null = null;
   private isPlaying: boolean = false;
   private volume: number = 0.3; // Default volume (30%)
+  private readonly MUSIC_STATE_KEY = 'minesweeper_music_state';
+  private readonly VOLUME_KEY = 'minesweeper_volume';
 
   constructor() {
+    this.loadStateFromStorage();
     this.initializeAudio();
+  }
+
+  private loadStateFromStorage() {
+    // Load music playing state
+    const savedMusicState = sessionStorage.getItem(this.MUSIC_STATE_KEY);
+    if (savedMusicState !== null) {
+      this.isPlaying = JSON.parse(savedMusicState);
+    } else {
+      // Default to playing music on first visit
+      this.isPlaying = true;
+    }
+
+    // Load volume setting
+    const savedVolume = sessionStorage.getItem(this.VOLUME_KEY);
+    if (savedVolume !== null) {
+      this.volume = parseFloat(savedVolume);
+    }
+  }
+
+  private saveStateToStorage() {
+    sessionStorage.setItem(this.MUSIC_STATE_KEY, JSON.stringify(this.isPlaying));
+    sessionStorage.setItem(this.VOLUME_KEY, this.volume.toString());
   }
 
   private initializeAudio() {
@@ -56,11 +81,13 @@ export class AudioService {
 
   startBackgroundMusic() {
     this.isPlaying = true;
+    this.saveStateToStorage();
     this.playBackgroundMusic();
   }
 
   stopBackgroundMusic() {
     this.isPlaying = false;
+    this.saveStateToStorage();
     if (this.backgroundMusic && !this.backgroundMusic.paused) {
       this.backgroundMusic.pause();
     }
@@ -89,6 +116,7 @@ export class AudioService {
 
   setVolume(volume: number) {
     this.volume = Math.max(0, Math.min(1, volume)); // Clamp between 0 and 1
+    this.saveStateToStorage();
     if (this.backgroundMusic) {
       this.backgroundMusic.volume = this.volume;
     }

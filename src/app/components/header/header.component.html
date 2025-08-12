@@ -1,13 +1,7 @@
 <div class="header-container">
   <div class="header-content">
-    <h1 routerLink="/" class="logo">Minesweeper</h1>
+    <h1 routerLink="/" class="logo">Gaming Portal</h1>
     <nav class="navigation">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
-        🏠 Home
-      </a>
-      <a routerLink="/game" routerLinkActive="active" class="nav-link">
-        🎮 Play Game
-      </a>
       <button class="music-toggle" (click)="toggleMusic()" [title]="isMusicPlaying ? 'Mute Music' : 'Play Music'">
         {{ isMusicPlaying ? '🔊' : '🔇' }}
       </button>

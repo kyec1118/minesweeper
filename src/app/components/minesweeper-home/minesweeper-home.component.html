@@ -1,0 +1,44 @@
+<div class="home-container">
+  <div class="welcome-section">
+    <h1>Welcome to Minesweeper</h1>
+    <p>Test your logic and luck in this classic puzzle game!</p>
+    
+    <div class="game-info">
+      <h2>How to Play</h2>
+      <ul>
+        <li>Click on cells to reveal what's underneath</li>
+        <li>Numbers indicate how many mines are adjacent to that cell</li>
+        <li>Right-click to flag cells you think contain mines</li>
+        <li>Clear all cells without mines to win!</li>
+      </ul>
+    </div>
+
+    <div class="navigation-section">
+      <button class="play-button" (click)="navigateToGame()">
+        🎮 Play Minesweeper
+      </button>
+    </div>
+
+    <div class="game-stats">
+      <h3>Game Features</h3>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-icon">💣</span>
+          <span class="stat-text">Classic mines</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🚩</span>
+          <span class="stat-text">Flag system</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">⏱️</span>
+          <span class="stat-text">Timer</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🏆</span>
+          <span class="stat-text">Win/Lose tracking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

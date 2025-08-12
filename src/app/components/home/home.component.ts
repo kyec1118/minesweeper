@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   constructor(private router: Router) {}
 
-  navigateToGame() {
-    this.router.navigate(['/game']);
+  navigateToMinesweeper() {
+    this.router.navigate(['/minesweeper']);
   }
 }

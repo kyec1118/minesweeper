@@ -1,43 +1,28 @@
 <div class="home-container">
   <div class="welcome-section">
-    <h1>Welcome to Minesweeper</h1>
-    <p>Test your logic and luck in this classic puzzle game!</p>
+    <h1>Welcome to Our Gaming Portal</h1>
+    <p>Discover classic games reimagined for modern web browsers!</p>
     
-    <div class="game-info">
-      <h2>How to Play</h2>
-      <ul>
-        <li>Click on cells to reveal what's underneath</li>
-        <li>Numbers indicate how many mines are adjacent to that cell</li>
-        <li>Right-click to flag cells you think contain mines</li>
-        <li>Clear all cells without mines to win!</li>
-      </ul>
-    </div>
-
-    <div class="navigation-section">
-      <button class="play-button" (click)="navigateToGame()">
-        🎮 Play Minesweeper
-      </button>
-    </div>
-
-    <div class="game-stats">
-      <h3>Game Features</h3>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-icon">💣</span>
-          <span class="stat-text">Classic mines</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-icon">🚩</span>
-          <span class="stat-text">Flag system</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-icon">⏱️</span>
-          <span class="stat-text">Timer</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-icon">🏆</span>
-          <span class="stat-text">Win/Lose tracking</span>
-        </div>
+    <div class="games-grid">
+      <div class="game-card" (click)="navigateToMinesweeper()">
+        <div class="game-icon">💣</div>
+        <h3>Minesweeper</h3>
+        <p>Classic logic puzzle game</p>
+        <button class="game-button">Play Now</button>
+      </div>
+      
+      <div class="game-card coming-soon">
+        <div class="game-icon">🃏</div>
+        <h3>Solitaire</h3>
+        <p>Coming Soon</p>
+        <button class="game-button disabled" disabled>Coming Soon</button>
+      </div>
+      
+      <div class="game-card coming-soon">
+        <div class="game-icon">🧩</div>
+        <h3>Tetris</h3>
+        <p>Coming Soon</p>
+        <button class="game-button disabled" disabled>Coming Soon</button>
       </div>
     </div>
   </div>

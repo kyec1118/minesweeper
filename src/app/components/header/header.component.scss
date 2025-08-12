@@ -53,6 +53,15 @@ h1.logo:hover {
   font-weight: 600;
 }
 
+.play-game-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a52) !important;
+  font-weight: 600;
+}
+
+.play-game-btn:hover {
+  background: linear-gradient(45deg, #ff5252, #d32f2f) !important;
+}
+
 .music-toggle {
   background: rgba(255, 255, 255, 0.1);
   border: none;

@@ -1,24 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { HomeComponent } from './home.component';
+import { MinesweeperHomeComponent } from './minesweeper-home.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('MinesweeperHomeComponent', () => {
+  let component: MinesweeperHomeComponent;
+  let fixture: ComponentFixture<MinesweeperHomeComponent>;
   let mockRouter: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      imports: [HomeComponent],
+      imports: [MinesweeperHomeComponent],
       providers: [
         { provide: Router, useValue: routerSpy }
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(MinesweeperHomeComponent);
     component = fixture.componentInstance;
     mockRouter = TestBed.inject(Router) as jasmine.SpyObj<Router>;
     fixture.detectChanges();
@@ -28,8 +28,8 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should navigate to minesweeper when minesweeper card is clicked', () => {
-    component.navigateToMinesweeper();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/minesweeper']);
+  it('should navigate to minesweeper game when play button is clicked', () => {
+    component.navigateToGame();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/minesweeper/game']);
   });
 });

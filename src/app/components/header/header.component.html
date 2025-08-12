@@ -8,6 +8,9 @@
       <a routerLink="/game" routerLinkActive="active" class="nav-link">
         🎮 Play Game
       </a>
+      <button class="music-toggle" (click)="toggleMusic()" [title]="isMusicPlaying ? 'Mute Music' : 'Play Music'">
+        {{ isMusicPlaying ? '🔊' : '🔇' }}
+      </button>
     </nav>
   </div>
 </div>

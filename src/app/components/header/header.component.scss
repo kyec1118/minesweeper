@@ -29,6 +29,7 @@ h1.logo:hover {
 .navigation {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .nav-link {
@@ -50,6 +51,27 @@ h1.logo:hover {
   background: #ffd700;
   color: #2c3e50;
   font-weight: 600;
+}
+
+.music-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {

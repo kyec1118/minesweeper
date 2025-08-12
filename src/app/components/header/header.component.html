@@ -1,1 +1,10 @@
-<h1>Minesweeper</h1>
+<div class="header-container">
+  <div class="header-content">
+    <h1 routerLink="/" class="logo">Gaming Portal</h1>
+    <nav class="navigation">
+      <button class="music-toggle" (click)="toggleMusic()" [title]="isMusicPlaying ? 'Mute Music' : 'Play Music'">
+        {{ isMusicPlaying ? '🔊' : '🔇' }}
+      </button>
+    </nav>
+  </div>
+</div>

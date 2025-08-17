@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: fit-content;
   padding: 20px;
   border: 3px solid;
@@ -10,5 +9,7 @@
   border-right-color: #7b7b7b;
   border-bottom-color: #7b7b7b;
   border-left-color: #ffffff;
-  background-color: #bdbdbd; // default hidden color
+  background-color: #bdbdbd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }

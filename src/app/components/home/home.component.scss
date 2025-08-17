@@ -1,0 +1,112 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  width: 100%;
+}
+
+.welcome-section {
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 3.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.game-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.game-card.coming-soon {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.game-card.coming-soon:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.game-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.game-card h3 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  color: white;
+}
+
+.game-card p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.game-button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.game-button:hover {
+  background: linear-gradient(45deg, #ff5252, #d32f2f);
+  transform: translateY(-2px);
+}
+
+.game-button.disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.game-button.disabled:hover {
+  transform: none;
+  background: #666;
+}
+
+

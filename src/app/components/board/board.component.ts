@@ -18,7 +18,6 @@ export class BoardComponent implements OnInit {
   }
 
   onCellClick(cell: Cell): void {
-    console.log('Cell clicked', cell);
     this.gameService.revealCell(cell);
   }
   onCellFlagged(cell: Cell): void {

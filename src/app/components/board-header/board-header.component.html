@@ -1,16 +1,41 @@
 <div class="board_header">
+    <!-- Game Status Indicator -->
     <button class="emoji-btn" (click)="restartGame()">
-        @if (gameStatus() === GameStatusType.IN_PROGRESS ){
-        🧐
-        } @else if (gameStatus() === GameStatusType.LOST){
+        @if (gameStatus() === GameStatusType.LOST ){
         😵
         } @else if (gameStatus()===GameStatusType.WON) {
         🥳
+        } @else{
+        {{currentEmoji()}}
         }
     </button>
+
+    <!-- Game Timer -->
     <div class="board_timer">
         {{formatTime(gameTime())}}
     </div>
-    <div> Game Difficulty</div>
 
+    <!-- Game Difficulty Selection -->
+    <div class="game_difficulty">
+        <fieldset>
+            <legend>Select a game difficulty:</legend>
+            <div>
+                <input type="radio" id="easy" name="difficulty" value="EASY" [(ngModel)]="selectedDifficulty" />
+                <label for="easy">Easy (8 x 8)</label>
+            </div>
+
+            <div>
+                <input type="radio" id="medium" name="difficulty" value="MEDIUM" [(ngModel)]="selectedDifficulty" />
+                <label for="medium">Medium (16 x 16)</label>
+            </div>
+
+            <div>
+                <input type="radio" id="hard" name="difficulty" value="HARD" [(ngModel)]="selectedDifficulty" />
+                <label for="hard">Hard (20 x 20)</label>
+            </div>
+            <div>
+                <button (click)="updateDifficulty()">Update</button>
+            </div>
+        </fieldset>
+    </div>
 </div>

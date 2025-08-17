@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   gap: 1.5rem;
   margin: auto;
   background-color: #bdbdbd;
@@ -40,5 +41,12 @@
     align-items: center; /* vertical centering */
     height: 2.5rem; /* fixed height to help vertical centering */
     width: 6rem;
+  }
+}
+
+.game_difficulty {
+  > div {
+    display: inline-block;
+    text-align: left;
   }
 }

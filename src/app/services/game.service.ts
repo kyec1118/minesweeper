@@ -1,28 +1,38 @@
 import { Injectable, signal, Signal, effect } from '@angular/core';
 import { Cell, CellStatusType } from '../models/cell.model';
 import { Time } from '@angular/common';
-
-export enum GameStatusType {
-  NOT_STARTED,
-  IN_PROGRESS,
-  WON,
-  LOST,
-}
+import {
+  GameDifficulty,
+  GameDifficultyConfig,
+  GameStatusType,
+} from '../models/game-settings.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
-  gameStatus = signal<GameStatusType>(GameStatusType.NOT_STARTED);
-  rows = 20;
-  columns = 20;
-  mines = 75;
+  rows: number;
+  columns: number;
+  mines: number;
+
+  private _difficulty: GameDifficulty = 'MEDIUM';
   private _timer: ReturnType<typeof setInterval> | null = null;
-  private _gameTime = signal(0);
   private hasStarted = false;
+  private emojiList = ['🫨', '😖', '🥸', '😫', '🤔', '🤯'];
+
+  // Signals
+  gameStatus = signal<GameStatusType>(GameStatusType.NOT_STARTED);
+
+  _currentEmoji = signal('🙂');
+  private _gameTime = signal(0);
   private _cells = signal<Cell[][]>([]);
 
-  constructor() {}
+  constructor() {
+    const config = GameDifficultyConfig[this._difficulty];
+    this.rows = config.rows;
+    this.columns = config.columns;
+    this.mines = config.mines;
+  }
 
   get cells() {
     return this._cells;
@@ -32,8 +42,26 @@ export class GameService {
     return this._gameTime;
   }
 
+  get difficulty(): GameDifficulty {
+    return this._difficulty;
+  }
+
+  get currentEmoji(): Signal<string> {
+    return this._currentEmoji;
+  }
+
+  setDifficulty(level: GameDifficulty) {
+    this._difficulty = level;
+    const config = GameDifficultyConfig[level];
+    this.rows = config.rows;
+    this.columns = config.columns;
+    this.mines = config.mines;
+    this.startGame();
+  }
+
   startGame() {
     this._gameTime.set(0);
+    this.stopTimer();
     const newBoard: Cell[][] = [];
     // Initialize the game board with default cells
     for (let x = 0; x < this.rows; x++) {
@@ -43,7 +71,6 @@ export class GameService {
       }
       newBoard.push(row);
     }
-    console.log('board initialized');
 
     // Place mines randomly
     let minesPlaced = 0;
@@ -54,8 +81,6 @@ export class GameService {
         minesPlaced++;
       }
     }
-
-    console.log(`${this.mines} mines placed on the board`);
 
     this._cells.set(newBoard);
 
@@ -71,10 +96,9 @@ export class GameService {
     this.gameStatus.set(GameStatusType.IN_PROGRESS);
     // Set the started flag to false when game inits
     if (this.hasStarted) {
-      this.hasStarted = !this.hasStarted;
+      this.hasStarted = false;
     }
 
-    console.log('Game started with the following board:');
     console.table(
       this.cells().forEach((row) => {
         const rowStr = row
@@ -93,11 +117,9 @@ export class GameService {
   }
 
   revealCell(cell: Cell): void {
-    console.log('hasSTarted flag: ', this.hasStarted);
     if (!this.hasStarted) {
       this.hasStarted = true;
       this.startTimer();
-      console.log('toggled start game to true');
     }
     if (this.gameStatus() !== GameStatusType.IN_PROGRESS) {
       throw new Error('Game is not in progress');
@@ -109,10 +131,14 @@ export class GameService {
       this.stopTimer();
       this.gameStatus.set(GameStatusType.LOST);
       this.revealMines();
-      console.log('Game Over! You hit a mine.');
       return;
     } else if (cell.adjacentMines === 0) {
       this.expandCell(cell.x, cell.y);
+    }
+
+    if (this.gameIsWon()) {
+      this.stopTimer();
+      this.gameStatus.set(GameStatusType.WON);
     }
   }
 
@@ -182,7 +208,7 @@ export class GameService {
 
   private expandCell(x: number, y: number): void {
     for (let i = x - 1; i <= x + 1; i++) {
-      if (i < 0 || i >= this.rows) continue; // Skip out-of-bounds rows
+      if (i < 0 || i >= this.rows) continue;
       for (let j = y - 1; j <= y + 1; j++) {
         if (j < 0 || j >= this.columns) continue;
         const adjacentCell = this.getCell(i, j);
@@ -211,10 +237,10 @@ export class GameService {
   private gameIsWon(): boolean {
     return this.cells()
       .flat()
-      .every(
-        (cell) =>
-          (cell.isMine && cell.status === CellStatusType.FLAGGED) ||
-          (!cell.isMine && cell.status === CellStatusType.REVEALED)
+      .every((cell) =>
+        cell.isMine
+          ? cell.status === CellStatusType.FLAGGED
+          : cell.status === CellStatusType.REVEALED
       );
   }
 
@@ -229,5 +255,14 @@ export class GameService {
       clearInterval(this._timer);
       this._timer = null;
     }
+  }
+  setRandomEmoji(): void {
+    const randomEmoji =
+      this.emojiList[Math.floor(Math.random() * this.emojiList.length)];
+    this._currentEmoji.set(randomEmoji);
+  }
+
+  setEmoji(emoji: string): void {
+    this._currentEmoji.set(emoji);
   }
 }

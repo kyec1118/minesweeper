@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
-import { GameService } from '../../services/game.service';
+import { GameService } from '../../../services/game.service';
 import { FormsModule } from '@angular/forms';
 import {
   GameStatusType,
   GameDifficulty,
-} from '../../models/game-settings.model';
+} from '../../../models/game-settings.model';
 @Component({
   selector: 'app-board-header',
   standalone: true,

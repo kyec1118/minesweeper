@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { GameService } from '../../services/game.service';
+import { GameService } from '../../../services/game.service';
 import { CellComponent } from '../cell/cell.component';
-import { Cell } from '../../models/cell.model';
+import { Cell } from '../../../models/cell.model';
 
 @Component({
   selector: 'app-board',

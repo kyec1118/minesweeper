@@ -1,5 +1,6 @@
+// Header styles
 .header-toolbar {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -30,17 +31,7 @@
   color: white;
   
   mat-icon {
-    font-size: 24px;
-  }
-}
-
-.avatar-button {
-  color: white;
-  
-  mat-icon {
-    font-size: 32px;
-    width: 32px;
-    height: 32px;
+    font-size: 1.5rem;
   }
 }
 
@@ -48,12 +39,77 @@
 ::ng-deep .mat-mdc-menu-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
   
   .mat-icon {
     margin-right: 0;
   }
 }
+
+// Sidebar styles
+.drawer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100vh;
+  z-index: 1000;
+  pointer-events: none;
+  overflow: visible;
+  background: transparent !important;
+
+  &.mat-drawer-container-has-open {
+    width: 17.5rem;
+    pointer-events: auto;
+  }
+
+  .mat-drawer {
+    pointer-events: auto;
+    z-index: 1001;
+    background: white;
+    box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.1);
+  }
+
+  .mat-drawer-backdrop {
+    z-index: 999;
+  }
+}
+
+.sidenav {
+  width: 17.5rem;
+  
+  .sidenav-header {
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.menu-fab {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 1002;
+  
+  .mat-icon {
+    transition: transform 0.3s ease;
+  }
+}
+
+// Active route styling
+::ng-deep .mat-mdc-list-item.active {
+  background-color: rgba(0, 0, 0, 0.04);
+  
+  .mat-icon {
+    color: var(--mat-primary-color);
+  }
+  
+  .mdc-list-item__primary-text {
+    color: var(--mat-primary-color);
+    font-weight: 500;
+  }
+}
+
 
 // Responsive styles
 @media (max-width: 768px) {
@@ -66,8 +122,41 @@
   }
   
   .avatar-button mat-icon {
-    font-size: 28px;
-    width: 28px;
-    height: 28px;
+    font-size: 1.75rem;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .sidenav {
+    width: 16.25rem;
+  }
+  
+  .drawer-container {
+    &.mat-drawer-container-has-open {
+      width: 16.25rem;
+    }
+  }
+  
+  .menu-fab {
+    top: 1rem;
+    left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidenav {
+    width: 15rem;
+  }
+  
+  .drawer-container {
+    &.mat-drawer-container-has-open {
+      width: 15rem;
+    }
+  }
+  
+  .menu-fab {
+    top: 0.75rem;
+    left: 0.75rem;
+    transform: scale(0.9);
   }
 }

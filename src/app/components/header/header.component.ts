@@ -2,9 +2,11 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AudioService } from '../../services/audio.service';
 import { GameService } from '../../services/game.service';
 
@@ -13,11 +15,14 @@ import { GameService } from '../../services/game.service';
   standalone: true,
   imports: [
     RouterLink, 
+    RouterLinkActive,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSidenavModule,
+    MatListModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -25,6 +30,9 @@ import { GameService } from '../../services/game.service';
 export class HeaderComponent {
   gameService = inject(GameService);
   audioService = inject(AudioService);
+  
+  // Sidebar menu state
+  isMenuOpen = false;
 
   toggleMusic() {
     this.audioService.toggleBackgroundMusic();
@@ -32,6 +40,15 @@ export class HeaderComponent {
 
   get isMusicPlaying() {
     return this.audioService.isBackgroundMusicPlaying();
+  }
+
+  // Sidebar menu methods
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 
   // Avatar-related methods

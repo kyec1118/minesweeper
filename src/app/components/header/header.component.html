@@ -1,3 +1,48 @@
+<!-- Material Drawer/Sidenav -->
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer 
+    #drawer 
+    [opened]="isMenuOpen" 
+    (openedChange)="isMenuOpen = $event"
+    mode="side" 
+    position="start"
+    class="sidenav">
+    
+    <mat-nav-list>
+      <a mat-list-item 
+         routerLink="/" 
+         routerLinkActive="active" 
+         [routerLinkActiveOptions]="{exact: true}"
+         (click)="closeMenu()"
+         tabindex="-1">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <span matListItemTitle>Home</span>
+      </a>
+
+      <a mat-list-item 
+         routerLink="/minesweeper" 
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: false}"
+         (click)="closeMenu()"
+         tabindex="-1">
+        <mat-icon matListItemIcon>games</mat-icon>
+        <span matListItemTitle>Minesweeper</span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+</mat-drawer-container>
+
+<!-- Menu Toggle Button -->
+<button 
+  mat-fab 
+  color="primary" 
+  class="menu-fab" 
+  (click)="toggleMenu()"
+  aria-label="Open menu">
+  <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
+</button>
+
+<!-- Main Header Toolbar -->
 <mat-toolbar color="primary" class="header-toolbar">
   <span routerLink="/" class="logo">Gaming Portal</span>
   

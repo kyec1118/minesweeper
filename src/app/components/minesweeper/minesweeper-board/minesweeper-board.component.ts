@@ -1,16 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { GameService } from '../../../services/game.service';
-import { CellComponent } from '../cell/cell.component';
+import { MinesweeperCellComponent } from '../minesweeper-cell/minesweeper-cell.component';
 import { Cell } from '../../../models/cell.model';
 
 @Component({
-  selector: 'app-board',
+  selector: 'app-minesweeper-board',
   standalone: true,
-  imports: [CellComponent],
-  templateUrl: './board.component.html',
-  styleUrl: './board.component.scss',
+  imports: [MinesweeperCellComponent],
+  templateUrl: './minesweeper-board.component.html',
+  styleUrl: './minesweeper-board.component.scss',
 })
-export class BoardComponent implements OnInit {
+export class MinesweeperBoardComponent implements OnInit {
   private readonly gameService = inject(GameService);
   readonly cells = this.gameService.cells;
   ngOnInit(): void {

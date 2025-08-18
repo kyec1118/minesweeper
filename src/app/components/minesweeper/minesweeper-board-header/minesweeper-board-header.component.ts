@@ -6,13 +6,13 @@ import {
   GameDifficulty,
 } from '../../../models/game-settings.model';
 @Component({
-  selector: 'app-board-header',
+  selector: 'app-minesweeper-board-header',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './board-header.component.html',
-  styleUrl: './board-header.component.scss',
+  templateUrl: './minesweeper-board-header.component.html',
+  styleUrl: './minesweeper-board-header.component.scss',
 })
-export class BoardHeaderComponent {
+export class MinesweeperBoardHeaderComponent {
   readonly gameService = inject(GameService);
   readonly gameStatus = this.gameService.gameStatus;
   readonly gameTime = this.gameService.gameTime;

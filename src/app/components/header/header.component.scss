@@ -1,105 +1,162 @@
-.header-container {
-  background: linear-gradient(135deg, #2c3e50, #3498db);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem 0;
+// Header styles
+.header-toolbar {
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
-.header-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  padding: 0 2rem;
-}
-
-h1.logo {
-  font-family: "mine-sweeper";
+.logo {
+  font-family: "mine-sweeper", sans-serif;
   color: white;
-  margin: 0;
   cursor: pointer;
   transition: color 0.3s ease;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  
+  &:hover {
+    color: #ffd700;
+  }
 }
 
-h1.logo:hover {
-  color: #ffd700;
+.spacer {
+  flex: 1 1 auto;
 }
 
-.navigation {
+.header-actions {
   display: flex;
-  gap: 1.5rem;
   align-items: center;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.nav-link:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.nav-link.active {
-  background: #ffd700;
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-.play-game-btn {
-  background: linear-gradient(45deg, #ff6b6b, #ee5a52) !important;
-  font-weight: 600;
-}
-
-.play-game-btn:hover {
-  background: linear-gradient(45deg, #ff5252, #d32f2f) !important;
+  gap: 0.5rem;
 }
 
 .music-toggle {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
   color: white;
-  padding: 0.5rem;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  min-width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.music-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 1rem;
-  }
   
-  h1.logo {
+  mat-icon {
     font-size: 1.5rem;
   }
+}
+
+// Menu item styling
+::ng-deep .mat-mdc-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   
-  .navigation {
-    gap: 1rem;
+  .mat-icon {
+    margin-right: 0;
+  }
+}
+
+// Sidebar styles
+.drawer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100vh;
+  z-index: 1000;
+  pointer-events: none;
+  overflow: visible;
+  background: transparent !important;
+
+  &.mat-drawer-container-has-open {
+    width: 17.5rem;
+    pointer-events: auto;
+  }
+
+  .mat-drawer {
+    pointer-events: auto;
+    z-index: 1001;
+    background: white;
+    box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.1);
+  }
+
+  .mat-drawer-backdrop {
+    z-index: 999;
+  }
+}
+
+.sidenav {
+  width: 17.5rem;
+  
+  .sidenav-header {
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.menu-fab {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 1002;
+  
+  .mat-icon {
+    transition: transform 0.3s ease;
+  }
+}
+
+// Active route styling
+::ng-deep .mat-mdc-list-item.active {
+  background-color: rgba(0, 0, 0, 0.04);
+  
+  .mat-icon {
+    color: var(--mat-primary-color);
   }
   
-  .nav-link {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+  .mdc-list-item__primary-text {
+    color: var(--mat-primary-color);
+    font-weight: 500;
+  }
+}
+
+
+// Responsive styles
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  .header-actions {
+    gap: 0.25rem;
+  }
+  
+  .avatar-button mat-icon {
+    font-size: 1.75rem;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .sidenav {
+    width: 16.25rem;
+  }
+  
+  .drawer-container {
+    &.mat-drawer-container-has-open {
+      width: 16.25rem;
+    }
+  }
+  
+  .menu-fab {
+    top: 1rem;
+    left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidenav {
+    width: 15rem;
+  }
+  
+  .drawer-container {
+    &.mat-drawer-container-has-open {
+      width: 15rem;
+    }
+  }
+  
+  .menu-fab {
+    top: 0.75rem;
+    left: 0.75rem;
+    transform: scale(0.9);
   }
 }

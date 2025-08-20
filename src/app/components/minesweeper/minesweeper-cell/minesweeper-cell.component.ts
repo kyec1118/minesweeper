@@ -6,16 +6,16 @@ import {
   signal,
   inject,
 } from '@angular/core';
-import { Cell, CellStatusType } from '../../models/cell.model';
-import { GameService } from '../../services/game.service';
+import { Cell, CellStatusType } from '../../../models/cell.model';
+import { GameService } from '../../../services/game.service';
 @Component({
-  selector: 'app-cell',
+  selector: 'app-minesweeper-cell',
   standalone: true,
   imports: [],
-  templateUrl: './cell.component.html',
-  styleUrl: './cell.component.scss',
+  templateUrl: './minesweeper-cell.component.html',
+  styleUrl: './minesweeper-cell.component.scss',
 })
-export class CellComponent {
+export class MinesweeperCellComponent {
   private readonly gameService = inject(GameService);
   readonly cell = input.required<Cell>();
   readonly cellClicked = output<Cell>();

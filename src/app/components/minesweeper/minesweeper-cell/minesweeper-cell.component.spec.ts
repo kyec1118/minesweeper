@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FrameComponent } from './frame.component';
+import { MinesweeperCellComponent } from './minesweeper-cell.component';
 
-describe('FrameComponent', () => {
-  let component: FrameComponent;
-  let fixture: ComponentFixture<FrameComponent>;
+describe('MinesweeperCellComponent', () => {
+  let component: MinesweeperCellComponent;
+  let fixture: ComponentFixture<MinesweeperCellComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FrameComponent]
+      imports: [MinesweeperCellComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FrameComponent);
+    fixture = TestBed.createComponent(MinesweeperCellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

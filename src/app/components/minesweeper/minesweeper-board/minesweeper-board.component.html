@@ -2,7 +2,7 @@
     @for(row of cells(); track row ){
     <div class="row">
         @for(cell of row; track cell) {
-        <app-cell [cell]="cell" (cellClicked)="onCellClick($event)" (cellFlagged)="onCellFlagged($event)"></app-cell>
+        <app-minesweeper-cell [cell]="cell" (cellClicked)="onCellClick($event)" (cellFlagged)="onCellFlagged($event)"></app-minesweeper-cell>
         }
     </div>
     }

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Cell } from '../../../models/cell.model';
 import { GameService } from '../../../services/game.service';
 import { MinesweeperCellComponent } from '../minesweeper-cell/minesweeper-cell.component';
-import { Cell } from '../../../models/cell.model';
 
 @Component({
   selector: 'app-minesweeper-board',

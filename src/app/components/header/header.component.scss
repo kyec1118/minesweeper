@@ -111,52 +111,22 @@
 }
 
 
-// Responsive styles
-@media (max-width: 768px) {
-  .logo {
-    font-size: 1.2rem;
-  }
-  
-  .header-actions {
-    gap: 0.25rem;
-  }
-  
-  .avatar-button mat-icon {
-    font-size: 1.75rem;
-    width: 1.75rem;
-    height: 1.75rem;
-  }
-
-  .sidenav {
-    width: 16.25rem;
-  }
-  
-  .drawer-container {
-    &.mat-drawer-container-has-open {
-      width: 16.25rem;
-    }
-  }
-  
-  .menu-fab {
-    top: 1rem;
-    left: 1rem;
+// User info in menu
+.user-info-menu {
+  padding: 8px 16px;
+  .user-email {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 200px;
   }
 }
 
-@media (max-width: 480px) {
-  .sidenav {
-    width: 15rem;
-  }
-  
-  .drawer-container {
-    &.mat-drawer-container-has-open {
-      width: 15rem;
-    }
-  }
-  
-  .menu-fab {
-    top: 0.75rem;
-    left: 0.75rem;
-    transform: scale(0.9);
-  }
+// User avatar image styling
+.user-avatar-image {
+  border-radius: 50%;
+  object-fit: cover;
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MinesweeperBoardComponent } from '../minesweeper-board/minesweeper-board.component';
 import { MinesweeperBoardHeaderComponent } from '../minesweeper-board-header/minesweeper-board-header.component';
+import { MinesweeperBoardComponent } from '../minesweeper-board/minesweeper-board.component';
+
 @Component({
   selector: 'app-minesweeper-frame',
   standalone: true,

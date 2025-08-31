@@ -1,5 +1,5 @@
 <!-- Material Drawer/Sidenav -->
-<mat-drawer-container class="drawer-container" autosize>
+<mat-drawer-container class="drawer-container" autosize *ngIf="currentUser">
   <mat-drawer 
     #drawer 
     [opened]="isMenuOpen" 
@@ -38,7 +38,8 @@
   color="primary" 
   class="menu-fab" 
   (click)="toggleMenu()"
-  aria-label="Open menu">
+  aria-label="Open menu"
+  *ngIf="currentUser">
   <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
 </button>
 
@@ -57,29 +58,44 @@
       class="music-toggle">
       <mat-icon>{{ isMusicPlaying ? 'volume_up' : 'volume_off' }}</mat-icon>
     </button>
-
-    <!-- Avatar with Menu -->
-    <button 
-      mat-icon-button 
-      [matMenuTriggerFor]="userMenu"
-      class="avatar-button">
-      <mat-icon>account_circle</mat-icon>
-    </button>
     
-    <mat-menu #userMenu="matMenu">
-      <button mat-menu-item (click)="onProfile()">
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
+    <div *ngIf="currentUser">
+      <!-- Avatar with Menu -->
+      <button    
+        mat-icon-button 
+        [matMenuTriggerFor]="userMenu"
+        class="avatar-button"
+        disableRipple>
+        <!-- Show user photo if available, otherwise show Material icon -->
+        <img 
+          *ngIf="currentUser!.photoURL; else defaultAvatar"
+          [src]="currentUser!.photoURL" 
+          [alt]="currentUser!.displayName || currentUser!.email"
+          class="user-avatar-image">
+        <ng-template #defaultAvatar>
+          <mat-icon>account_circle</mat-icon>
+        </ng-template>
       </button>
-      <button mat-menu-item (click)="onSettings()">
-        <mat-icon>settings</mat-icon>
-        <span>Settings</span>
-      </button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item (click)="onLogout()">
-        <mat-icon>logout</mat-icon>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
+      
+      <mat-menu #userMenu="matMenu">
+        <div class="user-info-menu">
+          <div class="user-email">{{ currentUser!.email }}</div>
+          <mat-divider></mat-divider>
+        </div>
+        <button mat-menu-item (click)="onProfile()">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item (click)="onSettings()">
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
   </div>
 </mat-toolbar>

@@ -1,10 +1,9 @@
 import {
-  Component,
-  effect,
-  input,
-  output,
-  signal,
-  inject,
+    Component,
+    inject,
+    input,
+    output,
+    signal
 } from '@angular/core';
 import { Cell, CellStatusType } from '../../../models/cell.model';
 import { GameService } from '../../../services/game.service';

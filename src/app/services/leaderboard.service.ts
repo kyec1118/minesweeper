@@ -15,7 +15,6 @@ import { FirebaseService } from './firebase.service';
 export interface LeaderboardEntry {
   displayName: string;
   time: number;
-  tries: number;
   difficulty: string; // 'EASY', 'MEDIUM', 'HARD'
   timestamp?: Timestamp;
 }

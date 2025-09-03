@@ -29,8 +29,8 @@ describe('LeaderboardComponent', () => {
 
   it('should load leaderboard on init', async () => {
     const mockData = [
-      { displayName: 'Player1', time: 30, tries: 2 },
-      { displayName: 'Player2', time: 45, tries: 1 }
+      { displayName: 'Player1', time: 30, difficulty: 'EASY' },
+      { displayName: 'Player2', time: 45, difficulty: 'MEDIUM' }
     ];
     mockLeaderboardService.getLeaderboard.and.returnValue(Promise.resolve(mockData));
 

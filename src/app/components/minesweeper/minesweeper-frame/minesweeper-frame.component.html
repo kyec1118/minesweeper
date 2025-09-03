@@ -3,11 +3,9 @@
   <div class="game-info-bar" *ngIf="currentUser$ | async as user">
     <div class="player-info">
       <span class="player-name">{{ user.displayName || user.email }}</span>
-      <span class="attempts">Attempts: {{ getCurrentAttempts() }}</span>
     </div>
     <div class="game-stats">
       <span class="time">Time: {{ gameService.gameTime() }}s</span>
-      <span class="status">{{ gameService.gameStatus() }}</span>
     </div>
     <div class="actions">
       <button class="leaderboard-toggle" (click)="toggleLeaderboard()">

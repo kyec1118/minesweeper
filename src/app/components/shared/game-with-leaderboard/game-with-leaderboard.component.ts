@@ -12,7 +12,6 @@ import { GameService } from '../../../services/game.service';
       <div class="game-header">
         <div class="user-info" *ngIf="currentUser$ | async as user">
           <span>Welcome, {{ user.displayName || user.email }}!</span>
-          <span>Attempts: {{ getCurrentAttempts() }}</span>
         </div>
         <div class="game-stats">
           <span>Time: {{ gameService.gameTime() }}s</span>
@@ -69,9 +68,5 @@ export class GameWithLeaderboardComponent implements OnInit {
 
   ngOnInit() {
     // Initialize game if needed
-  }
-
-  getCurrentAttempts(): number {
-    return this.gameIntegrationService.getCurrentAttempts();
   }
 }

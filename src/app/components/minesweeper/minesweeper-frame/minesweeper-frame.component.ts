@@ -23,7 +23,7 @@ import { MinesweeperBoardComponent } from '../minesweeper-board/minesweeper-boar
 })
 export class MinesweeperFrameComponent implements OnInit {
   currentUser$: Observable<User | null | undefined>;
-  showLeaderboard = false;
+  showLeaderboard = true; // Show leaderboard by default
 
   constructor(
     private gameIntegrationService: GameIntegrationService,
@@ -35,10 +35,6 @@ export class MinesweeperFrameComponent implements OnInit {
 
   ngOnInit() {
     // Game integration service is now active and will track games
-  }
-
-  getCurrentAttempts(): number {
-    return this.gameIntegrationService.getCurrentAttempts();
   }
 
   toggleLeaderboard() {

@@ -1,10 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
-import { GameService } from '../../../services/game.service';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
-  GameStatusType,
-  GameDifficulty,
+    GameDifficulty,
+    GameStatusType,
 } from '../../../models/game-settings.model';
+import { GameService } from '../../../services/game.service';
 @Component({
   selector: 'app-minesweeper-board-header',
   standalone: true,

@@ -1,0 +1,47 @@
+<div class="leaderboard">
+  <div class="leaderboard-header">
+    <h2>Leaderboard</h2>
+    <button class="refresh-btn" (click)="refreshLeaderboard()" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Refresh' }}
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading leaderboard...
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+    <button (click)="loadLeaderboard()">Try Again</button>
+  </div>
+
+  <table *ngIf="!loading && !error">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Difficulty</th>
+        <th>Time (s)</th>
+        <th>Attempts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of leaderboard$ | async; let i = index" 
+          [class.top-player]="i < 3">
+        <td class="rank">
+          <span class="rank-badge" [class]="'rank-' + (i + 1)">{{ i + 1 }}</span>
+        </td>
+        <td class="player-name">{{ entry.displayName }}</td>
+        <td class="difficulty" [class]="'difficulty-' + entry.difficulty.toLowerCase()">
+          {{ entry.difficulty }}
+        </td>
+        <td class="time">{{ entry.time }}s</td>
+        <td class="attempts">{{ entry.tries }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && !error && (leaderboard$ | async)?.length === 0" class="empty">
+    No leaderboard entries yet. Be the first to play!
+  </div>
+</div>

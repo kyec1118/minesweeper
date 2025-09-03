@@ -23,5 +23,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/minesweeper/minesweeper-frame/minesweeper-frame.component').then(m => m.MinesweeperFrameComponent),
     canActivate: [AuthGuard]
   },
+  { 
+    path: 'leaderboard', 
+    loadComponent: () => import('./components/shared/leaderboard/leaderboard.component').then(m => m.LeaderboardComponent),
+    canActivate: [AuthGuard]
+  },
   { path: '**', redirectTo: '' }
 ];

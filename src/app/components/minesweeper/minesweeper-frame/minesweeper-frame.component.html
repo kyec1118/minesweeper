@@ -1,4 +1,34 @@
-<div class="frame">
-    <app-minesweeper-board-header></app-minesweeper-board-header>
-    <app-minesweeper-board></app-minesweeper-board>
+<div class="game-container">
+  <!-- Game Info Bar -->
+  <div class="game-info-bar" *ngIf="currentUser$ | async as user">
+    <div class="player-info">
+      <span class="player-name">{{ user.displayName || user.email }}</span>
+      <span class="attempts">Attempts: {{ getCurrentAttempts() }}</span>
+    </div>
+    <div class="game-stats">
+      <span class="time">Time: {{ gameService.gameTime() }}s</span>
+      <span class="status">{{ gameService.gameStatus() }}</span>
+    </div>
+    <div class="actions">
+      <button class="leaderboard-toggle" (click)="toggleLeaderboard()">
+        {{ showLeaderboard ? 'Hide' : 'Show' }} Leaderboard
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Game Area -->
+  <div class="game-layout">
+    <!-- Game Board -->
+    <div class="game-board">
+      <div class="frame">
+        <app-minesweeper-board-header></app-minesweeper-board-header>
+        <app-minesweeper-board></app-minesweeper-board>
+      </div>
+    </div>
+
+    <!-- Leaderboard Sidebar -->
+    <div class="leaderboard-sidebar" [class.visible]="showLeaderboard">
+      <app-leaderboard></app-leaderboard>
+    </div>
+  </div>
 </div>

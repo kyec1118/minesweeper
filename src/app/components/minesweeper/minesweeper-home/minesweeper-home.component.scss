@@ -129,4 +129,15 @@ p {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
 

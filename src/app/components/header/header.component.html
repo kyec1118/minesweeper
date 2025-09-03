@@ -28,6 +28,15 @@
         <mat-icon matListItemIcon>games</mat-icon>
         <span matListItemTitle>Minesweeper</span>
       </a>
+
+      <a mat-list-item 
+         routerLink="/leaderboard" 
+         routerLinkActive="active"
+         (click)="closeMenu()"
+         tabindex="-1">
+        <mat-icon matListItemIcon>leaderboard</mat-icon>
+        <span matListItemTitle>Leaderboard</span>
+      </a>
     </mat-nav-list>
   </mat-drawer>
 </mat-drawer-container>
